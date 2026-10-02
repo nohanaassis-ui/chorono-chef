@@ -1,5 +1,5 @@
 public class CarneExotica extends Ingrediente {
-    private String tipoAnimal;
+    private final String tipoAnimal;
 
     public CarneExotica(String nome, double custo, String epocaOrigem, String tipoAnimal) {
         super(nome, custo, epocaOrigem);

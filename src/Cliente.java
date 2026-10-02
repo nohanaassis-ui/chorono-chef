@@ -4,10 +4,9 @@ public  abstract class Cliente {
     protected int nivelFome;
     protected boolean satisfeito;
 
-    public Cliente(String nome, int paciencia, int nivelFome) {
+    public Cliente(String nome, int paciencia) {
         this.nome = nome;
         this.paciencia = paciencia;
-        this.nivelFome = nivelFome;
         this.satisfeito = false;
     }
 
@@ -44,4 +43,9 @@ public  abstract class Cliente {
     }
 
     public  abstract int avaliarPrato(Prato prato);
+
+
+    public void aumentarPaciencia(int quantidade) {
+        this.paciencia = Math.min(100, this.paciencia + quantidade); // Limita em no máximo 100%
+    }
 }

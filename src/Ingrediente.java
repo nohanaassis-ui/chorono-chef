@@ -1,4 +1,4 @@
-public abstract class  Ingrediente extends Cozinhavel {
+public abstract class Ingrediente implements Cozinhavel {
     private String nome;
     private double custo;
     private String epocaOrigem;
@@ -6,17 +6,19 @@ public abstract class  Ingrediente extends Cozinhavel {
     private int picancia;
     private boolean processado;
 
-
+    // Construtor principal completo
     public Ingrediente(String nome, double custo, String epocaOrigem, int temperatura, int picancia, boolean processado) {
         this.nome = nome;
         this.custo = custo;
         this.epocaOrigem = epocaOrigem;
-        this.temperatura = 20;
-        this.picancia = 0;
-        this.processado = false;
+        this.temperatura = temperatura;
+        this.picancia = picancia;
+        this.processado = processado;
     }
 
+    // Construtor simplificado (define padrões iniciais para itens novos)
     public Ingrediente(String nome, double custo, String epocaOrigem) {
+        this(nome, custo, epocaOrigem, 20, 0, false); // Chama o construtor completo com valores padrão
     }
 
     @Override
@@ -31,30 +33,21 @@ public abstract class  Ingrediente extends Cozinhavel {
                 '}';
     }
 
-    public String getNome() {
-        return nome;
-    }
+    // Getters e Setters (Encapsulamento)
+    public String getNome() { return nome; }
+    public void setNome(String nome) { this.nome = nome; }
 
-    public double getCusto() {
-        return custo;
-    }
+    public double getCusto() { return custo; }
+    public void setCusto(double custo) { this.custo = custo; }
 
-    public String getEpocaOrigem() {
-        return epocaOrigem;
-    }
+    public String getEpocaOrigem() { return epocaOrigem; }
+    public void setEpocaOrigem(String epocaOrigem) { this.epocaOrigem = epocaOrigem; }
 
-    public int getTemperatura() {
-        return temperatura;
-    }
+    public int getTemperatura() { return temperatura; }
+    public int getPicancia() { return picancia; }
+    public boolean isProcessado() { return processado; }
 
-    public int getPicancia() {
-        return picancia;
-    }
-
-    public boolean isProcessado() {
-        return processado;
-    }
-
+    // Métodos da Interface Cozinhavel
     @Override
     public void aquecer(int graus) {
         this.temperatura += graus;
@@ -70,6 +63,11 @@ public abstract class  Ingrediente extends Cozinhavel {
     @Override
     public boolean estaPronto() {
         return processado;
+    }
+
+    // Método especifico de alteração de estado
+    public void resfriar(int graus) {
+        this.temperatura -= graus;
     }
 }
 

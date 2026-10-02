@@ -1,5 +1,5 @@
 public class ItemSintetico extends Ingrediente {
-    private int voltagem;
+    private final int voltagem;
 
     public ItemSintetico(String nome, double custo, String epocaOrigem, int voltagem) {
         super(nome, custo, epocaOrigem);

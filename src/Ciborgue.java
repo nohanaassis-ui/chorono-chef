@@ -1,7 +1,7 @@
 public class Ciborgue extends Cliente {
 
-    public Ciborgue(String nome, int paciencia, int nivelFome) {
-        super(nome, paciencia, nivelFome);
+    public Ciborgue(String nome, int paciencia) {
+        super(nome, paciencia);
     }
 
     @Override
@@ -11,8 +11,7 @@ public class Ciborgue extends Cliente {
         for (Ingrediente ingrediente : prato.getIngredientes()) {
             if (ingrediente instanceof ItemSintetico) {
                 nota += 45;
-            } else if (ingrediente instanceof VegetalTemporal) {
-                VegetalTemporal vegetalTemporal = (VegetalTemporal) ingrediente;
+            } else if (ingrediente instanceof VegetalTemporal vegetalTemporal) {
                 if (vegetalTemporal.iseRadioativo()) {
                     nota += 25;
                 }

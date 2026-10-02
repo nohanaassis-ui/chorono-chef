@@ -1,18 +1,18 @@
-public class NobreMedieval extends Cliente{
+public class NobreMedieval extends Cliente {
 
-    public NobreMedieval(String nome, int paciencia, int nivelFome) {
-        super(nome, paciencia, nivelFome);
+    public NobreMedieval(String nome, int paciencia) {
+        super(nome, paciencia);
     }
 
     @Override
     public int avaliarPrato(Prato prato) {
         int nota = 0;
-        for (Ingrediente ingrediente : prato.getIngredientes()){
-            if (ingrediente.getTemperatura() >=50) nota += 25;
+        for (Ingrediente ingrediente : prato.getIngredientes()) {
+            if (ingrediente.getTemperatura() >= 50) nota += 25;
             if (ingrediente.getPicancia() >= 2) nota += 20;
-            if (ingrediente instanceof ItemSintetico) nota -= 40;
+            if (ingrediente.isProcessado()) nota -= 40;
         }
-        if (nota >= 60 ) this.satisfeito = true;
+        if (nota >= 60) this.satisfeito = true;
         return Math.max(0, nota);
     }
 }

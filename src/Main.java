@@ -1,28 +1,33 @@
 import java.util.Scanner;
 
-public class Main {
-    public static void main(String[] args) {
+
+void main() {
+
         Scanner scanner = new Scanner(System.in);
         Restaurante restaurante = new Restaurante("Chrono Chef Prime");
 
-        // Adiciona alguns clientes iniciais na fila
-        restaurante.adicionarCliente(new NobreMedieval("Barão de Aragon", 85, 1));
-        restaurante.adicionarCliente(new Ciborgue("UNIT-X88", 70, 2));
+        // Clientes iniciais da fila
+        restaurante.adicionarCliente(new NobreMedieval("Barão de Aragon", 85));
+        restaurante.adicionarCliente(new Ciborgue("UNIT-X88", 70));
 
         boolean jogoAtivo = true;
 
-        System.out.println("=== BEM-VINDO AO CHRONO CHEF ===");
+        IO.println("==================================================");
+        IO.println("          ⏳ BEM-VINDO AO CHRONO CHEF ⏳          ");
+        IO.println("==================================================");
 
         while (jogoAtivo) {
-            System.out.println("\n----------------------------------");
-            // Exibe o status atual do restaurante
+            IO.println("\n--------------------------------------------------");
+            // Exibe o status atual do restaurante (Caixa, Reputação, Fila)
             restaurante.exibirStatus();
 
-            System.out.println("\n--- MENU ---");
-            System.out.println("1. Cozinhar e Servir Prato");
-            System.out.println("2. Passar Turno (Avançar Tempo)");
-            System.out.println("3. Sair do Jogo");
-            System.out.print("Escolha uma opção: ");
+            IO.println("\n┌────────────────── MENU ──────────────────┐");
+            IO.println("│ 1.  Cozinhar e Servir Prato            │");
+            IO.println("│ 2.  Passar Turno (Avançar Tempo)        │");
+            IO.println("│ 3.  Loja de Melhorias (Upgrades)        │");
+            IO.println("│ 4.  Sair do Jogo                       │");
+            IO.println("└──────────────────────────────────────────┘");
+            IO.println(" Escolha uma opção: ");
 
             int opcao = scanner.nextInt();
             scanner.nextLine(); // Limpa o buffer do teclado
@@ -34,19 +39,21 @@ public class Main {
             } else if (opcao == 2) {
                 restaurante.passarTurno();
             } else if (opcao == 3) {
+                restaurante.abrirLoja(scanner);
+            } else if (opcao == 4) {
                 jogoAtivo = false;
                 System.out.println("\nFechando as portas do Chrono Chef por hoje...");
             } else {
-                System.out.println("Opção inválida! Tente novamente.");
+                System.out.println("⚠️️ Opção inválida! Tente novamente.");
             }
 
-            // Verifica se perdeu o jogo (ex: reputação zerada)
             if (restaurante.verificarFimDeJogo()) {
                 jogoAtivo = false;
             }
         }
 
         scanner.close();
-        System.out.println("\nObrigado por jogar Chrono Chef!");
+        IO.println("\n==================================================");
+        IO.println("       Obrigada por jogar Chrono Chef!       ");
+        IO.println("==================================================");
     }
-}
